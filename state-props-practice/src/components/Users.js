@@ -60,9 +60,9 @@ the button being clicked.  */}
 the information is being teleported from where it is originating from
 to here. You could say State is to Teleporter as this.state is to teleporter receiver!!! */}
               <marquee>  <h1>{this.state.title}</h1></marquee>
-            <User age={this.state.users[0].age}>{this.state.users[0].name}</User>
+            {/* <User age={this.state.users[0].age}>{this.state.users[0].name}</User>
             <User age={this.state.users[1].age}>{this.state.users[1].name}</User>
-            <User age={this.state.users[2].age}>{this.state.users[2].name}</User>
+            <User age={this.state.users[2].age}>{this.state.users[2].name}</User> */}
             </div>
         );
     }

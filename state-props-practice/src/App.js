@@ -30,13 +30,26 @@ yet, so if I change the state right now, the component won't re-render itself. W
 something with global events, llike window or Docs. Just like we are doing below we will use cWM 
 to notify the user whenever the window is below a certain measurement.*/ 
   componentWillMount(){
+/* So, what are we saying here? IF the window(browserwindow) is BELOW 500, then we want the component to
+"Change" the state . In this case, we are creating a notification that says the measurement of the window's
+width in real-time. This is dynamic since this will change according to the user.  */
+    if( window.innerWidth <500){
+/* This is telling the component WHAT exactly we want to change once the condition above us is met. Once the 
+window width is BELOW 500, the condition is being met. Once this is met, the state is altered. this is telling 
+the VDOM what we want to alter the State with.  */
+      this.setState({innerWidth:window.innerWidth})
+/* Next, we will console log Render. render occurs after constructor, and cWM, and it'b job is basically to render 
+the component. Render is going to take the state and the props and render our component. */
     console.log('componentWillMount')
   }
+}
 
   render() {
     return (
       <div className="App">
-      {this.state.name}
+      Name: {this.state.name}
+{/* This is "calling" the actual change. This is where the change itself will appear, if the condition is met! */}
+   <br/> | <br/> innerWidth: {this.state.innerWidth}
       
         <Users/>
       </div>
