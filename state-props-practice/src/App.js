@@ -74,12 +74,33 @@ shouldComponentUpdate(nextProps, nextState){
 componentWillUpdate() {
   console.log('componentWillUpdate')
 }
+//cDU has previous props and previous state available as arguments. the signficance is if you want to set up some third-party
+//UI elements, you can do that here. Third-Party UI elements are: dropdown lists, list boxes, buttons, toggles, text fields, date field etc etc.  
+componentDidUpdate(prevProps, prevState) {
+  console.log('componentDidUpdate')
+}
+//What is 'Unmounting?' If you changed something while mounted, you can undo that change by unmounting. Basically cWU is a cleanup componentof React,
+//and is the last of the lifecycle hooks going from being born to middle of life, and then finally dying or dissapearing by cWU!!
+//Once its unmounts, the component is gone. 
+componentWillUnmount(){
+  console.log('componentWillUnmount')
+}
 //Change state is being called below in the button function. This is the function itself which will contain the change to the page
 //and alter the state itself. 
 changeState() {
   this.setState({name: 'jill'})
 }
+//This function is being called upon by the button below. When the button is pressed, any component comntaining the name of 'Robert' will 
+//be unmounted which will make it disapear from react's VirtualDOM. 
+unmountChild() {
+  this.setState({name:'robert'})
+  console.log('unmountChild')
+}
   render() {
+    console.log('render');
+    if(this.state.name === 'robert'){
+      return (<div/>);
+    }
     return (
       <div className="App">
       Name: {this.state.name}
@@ -91,7 +112,10 @@ Don't forget to import the "Child" component at the top of App.js, as seen above
 {/*Here, I'm making a button that will alter the VitrualDOM with onClick. changeState above will dictate what effect the 
 button will have on the page & what changes will happen to the State! And when applying a change in this button, we will also
 include a .bind(this). */}
-      <button onClick={this.changeState.bind(this)}>Change State</button>
+      <button onClick={this.changeState.bind(this)}>Change State!!</button>
+{/* This is unusual, but for demonstration purposes I'm making a button that will unmount Child components.
+I built a function called unmountChild; refer to it above to get more info on unmounting.  */}
+      <button onClick={this.unmountChild.bind(this)}>Unmount Child!!</button>
         {/* Uncomment this out before tutorial! <Users/> */}
       </div>
     );

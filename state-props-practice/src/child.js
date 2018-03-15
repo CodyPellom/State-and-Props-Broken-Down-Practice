@@ -40,6 +40,14 @@ componentWillReceiveProps(){
     console.log('child componentWillUpdate')
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    console.log('child componentDidUpdate')
+  }
+
+  componentWillUnmount(){
+    console.log('child componentWillUnmount')
+  }
+
   render() {
       console.log('child render')
     return (
